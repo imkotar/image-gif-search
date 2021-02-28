@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-export const SearchBar: React.FC<any> = () => {
-  const [searchInput, setInput] = useState('')
-  const [type, setSearchType] = useState('')
+interface searchBarProps {
+    searchData: {
+        type: string,
+        searchInput: string | number,
+        perPage: number,
+        page: number
+    },
+    onSearch: Function
+}
+
+export const SearchBar: React.FC<searchBarProps> = ({searchData, onSearch}) => {
+  const [searchInput, setInput] = useState(searchData.searchInput)
+  const [type, setSearchType] = useState(searchData.type)
   
   const generateFormData = () => {
-    searchInput !== '' ? console.log({searchInput, type}) : alert('nothing to search for')
+    searchInput !== '' ? onSearch({searchInput, type}) : alert('there is nothing to search for')
   }
 
   return (
@@ -36,4 +46,4 @@ export const SearchBar: React.FC<any> = () => {
   );
   }
   
-  
+

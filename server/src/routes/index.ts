@@ -4,17 +4,9 @@ import { imageConnector } from '../connectors/imageConnector';
 
 const router: Router = Router()
 
-router.get('/', (req: Request, res: Response) => {
-    res.send('hello world');
-});
-
-router.get("/api", async (req: Request, res: Response) => {
+router.post("/api", async (req: Request, res: Response) => {
     try {
-    const testObject = {
-        searchInput: 'flowers',
-        perPage: 5,
-        page: 1}
-        const response = await imageConnector(testObject)
+      const response = await imageConnector(req.body)
       res.send(response);
     }
     catch (err) {
