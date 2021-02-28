@@ -22,5 +22,4 @@ router.get("/api", async (req: Request, res: Response) => {
     }
   })
 
-
 export const RouterController: Router = router;
