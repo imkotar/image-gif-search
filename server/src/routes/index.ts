@@ -1,5 +1,5 @@
-import { Router, Request, Response } from "express";
 import express = require("express");
+import { Router, Request, Response } from "express";
 import { imageConnector } from '../connectors/imageConnector';
 
 const router: Router = Router()
