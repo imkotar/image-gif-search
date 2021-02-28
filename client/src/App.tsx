@@ -1,6 +1,7 @@
-import React, { useState,  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from 'react-flexbox-grid';
 import { SearchBar } from './components/SearchBar'
+import { Pagination } from './components/Pagination'
 import axios from 'axios'
 
 interface SearchData {
@@ -17,6 +18,16 @@ function App() {
     perPage: 20,
     page: 1,
   })
+  const [totalPagesNumber, setTotalPagesNumber] = useState(1)
+  const [results, setResults] = useState<Object>([])
+  
+  useEffect(() => {
+    if (searchData.searchInput === '') return 
+    const fetchData = async () => {
+     await getSearchResults(searchData)
+    }
+    fetchData()
+  }, [searchData])
 
   const updateSearchData = (onSearchData: React.SetStateAction<SearchData>) => {
     setSearchData({
@@ -25,10 +36,18 @@ function App() {
     })
   }
 
-  const getSearchResults = () => {
-    axios.post('http://localhost:5000/api', searchData)
+  const updatePaginationData = (paginationData: React.SetStateAction<SearchData>) => {
+    setSearchData({
+      ...searchData,
+      ...paginationData
+    })
+  }
+
+  const getSearchResults = (searchData: SearchData) => {
+    return axios.post('http://localhost:5000/api', searchData)
       .then(response => {
-        console.log(response.data.hits)
+        setTotalPagesNumber(response.data.pagination.totalPagesNumber)
+        setResults(response.data.hits)
       })
       .catch(error => alert(error))
   }
@@ -39,7 +58,7 @@ function App() {
         Search for image or gif
       </h1>
       <SearchBar searchData={searchData} onSearch={updateSearchData}/>
-      <button onClick={getSearchResults}>TEST</button>
+      <Pagination totalPagesNumber={totalPagesNumber} searchData={searchData} onPaginationChange={updatePaginationData}/>
     </Grid>
   );
 }
