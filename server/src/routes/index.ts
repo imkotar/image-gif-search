@@ -13,7 +13,6 @@ router.post("/api", async (req: Request, res: Response) => {
         return res.status(404).send(validator)
       }
       const response = req.body.type === 'image' ? await imageConnector(req.body) : await gifConnector(req.body)
-      console.log(response)
       res.send(response);
     }
     catch (err) {

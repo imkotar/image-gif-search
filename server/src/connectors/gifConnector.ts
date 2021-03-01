@@ -5,8 +5,7 @@ import { InputData } from '../interfaces/inputData';
 export const gifConnector = ({searchInput, perPage, page}: InputData) => {
     page = (page - 1) * perPage
     const search = encodeURIComponent(searchInput)
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=${config.GIPHY_API_KEY}&q=flowers&limit=${perPage}&offset=${page}&rating=g&lang=en`
-    console.log(url)
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${config.GIPHY_API_KEY}&q=${search}&limit=${perPage}&offset=${page}&rating=g&lang=en`
     return axios.get(url)
       .then(response => {
         const totalPagesNumber = Math.ceil(response.data.pagination.total_count/perPage)

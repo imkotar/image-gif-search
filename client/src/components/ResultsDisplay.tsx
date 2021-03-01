@@ -5,9 +5,9 @@ export const ResultsDisplay = (results: any) => {
 
   const renderImage = (image: ImageProps) => {
     return (
-      <div>
-        <img key={image.id} style={imageStyle} alt={image.previewURL} src={image.previewURL} />
-      </div>
+      <a href={image.largeImageURL} target="_blank">
+        <img key={image.id} style={imageStyle} alt={image.previewURL} src={image.previewURL}/>
+      </a>
     );
   }
   const imageStyle = {
