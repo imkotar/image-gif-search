@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-
-interface PaginationProps {
-    searchData: {
-        type: string,
-        searchInput: string | number,
-        perPage: number,
-        page: number
-    },
-    onPaginationChange: Function,
-    totalPagesNumber: Number
-}
+import { PaginationProps } from '../interfaces/interfaces'
 
 export const Pagination: React.FC<PaginationProps> = ({searchData, onPaginationChange, totalPagesNumber}) => {
   const [page, setPage] = useState(searchData.page)

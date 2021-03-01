@@ -3,21 +3,9 @@ import { Grid } from 'react-flexbox-grid';
 import { SearchBar } from './components/SearchBar'
 import { Pagination } from './components/Pagination'
 import { ResultsDisplay } from './components/ResultsDisplay'
+import { SearchData, ImageProps } from './interfaces/interfaces'
 import axios from 'axios'
 
-interface SearchData {
-  type: string,
-  searchInput: string | number,
-  perPage: number,
-  page: number
-};
-
-interface ImageProps {
-    id: string | number,
-    previewURL: string,
-    webformatURL: string,
-    largeImageURL: string
-}
 
 function App() {
   const [searchData, setSearchData] = useState<SearchData>({

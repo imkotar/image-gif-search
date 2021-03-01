@@ -1,11 +1,5 @@
 import { Grid, Row} from 'react-flexbox-grid';
-
-interface ImageProps {
-    id: string | number,
-    previewURL: string,
-    webformatURL: string,
-    largeImageURL: string
-}
+import { ImageProps } from '../interfaces/interfaces'
 
 export const ResultsDisplay = (results: any) => {
 

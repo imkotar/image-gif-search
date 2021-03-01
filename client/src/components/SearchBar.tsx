@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import { SearchData } from '../interfaces/interfaces'
 
-interface searchBarProps {
-    searchData: {
-        type: string,
-        searchInput: string | number,
-        perPage: number,
-        page: number
-    },
+interface SearchBarProps {
+    searchData: SearchData
     onSearch: Function
 }
 
-export const SearchBar: React.FC<searchBarProps> = ({searchData, onSearch}) => {
+export const SearchBar: React.FC<SearchBarProps> = ({searchData, onSearch}) => {
   const [searchInput, setInput] = useState(searchData.searchInput)
   const [type, setSearchType] = useState(searchData.type)
   
