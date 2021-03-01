@@ -21,16 +21,10 @@ export const imageConnector = ({searchInput, perPage, page}: InputData) => {
 }
 
 const filterHitsData = ({hits}: any) => {
-    let results: object[] = []
-    const x = hits.forEach((hit: ResultData) => {
-        const result = {
-            id: hit.id,
-            previewURL: hit.previewURL,
-            webformatURL: hit.webformatURL,
-            largeImageURL: hit.largeImageURL
-        }
-				results.push(result)
-    })
-    return results
+    return hits.map((hit: ResultData) => ({
+        id: hit.id,
+        previewURL: hit.previewURL,
+        webformatURL: hit.webformatURL,
+        largeImageURL: hit.largeImageURL }))
 }
 

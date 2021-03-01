@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from 'react-flexbox-grid';
 import { SearchBar } from './components/SearchBar'
 import { Pagination } from './components/Pagination'
+import { ResultsDisplay } from './components/ResultsDisplay'
 import axios from 'axios'
 
 interface SearchData {
@@ -9,6 +10,13 @@ interface SearchData {
   searchInput: string | number,
   perPage: number,
   page: number
+};
+
+interface ImageProps {
+    id: string | number,
+    previewURL: string,
+    webformatURL: string,
+    largeImageURL: string
 }
 
 function App() {
@@ -18,12 +26,15 @@ function App() {
     perPage: 20,
     page: 1,
   })
+
   const [totalPagesNumber, setTotalPagesNumber] = useState(1)
-  const [results, setResults] = useState<Object>([])
+  const [results, setResults] = useState<ImageProps[]>([])
+  const [loading, setLoading] = useState(false)
   
   useEffect(() => {
     if (searchData.searchInput === '') return 
     const fetchData = async () => {
+     setLoading(true)
      await getSearchResults(searchData)
     }
     fetchData()
@@ -50,6 +61,7 @@ function App() {
         setResults(response.data.hits)
       })
       .catch(error => alert(error))
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -59,6 +71,7 @@ function App() {
       </h1>
       <SearchBar searchData={searchData} onSearch={updateSearchData}/>
       <Pagination totalPagesNumber={totalPagesNumber} searchData={searchData} onPaginationChange={updatePaginationData}/>
+      {loading ? <div>loading</div> : <ResultsDisplay results={results} />}
     </Grid>
   );
 }
