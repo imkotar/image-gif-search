@@ -1,5 +1,5 @@
 import { Grid, Row} from 'react-flexbox-grid';
-import { ImageProps } from '../interfaces/interfaces'
+import { ImageProps } from '../../interfaces/interfaces'
 
 export const ResultsDisplay = (results: any) => {
 
@@ -12,15 +12,14 @@ export const ResultsDisplay = (results: any) => {
   }
   const imageStyle = {
     padding: "10px",
-  };
+  }
+  
   return (
-    <div>
     <Grid fluid>
         <Row center="sm" style={{justifyContent: 'center'}}>
           {results.results.map((image: ImageProps) => renderImage(image))}
         </Row>
     </Grid>
-    </div>
   );
   }
   

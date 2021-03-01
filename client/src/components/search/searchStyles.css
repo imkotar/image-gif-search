@@ -1,0 +1,30 @@
+.search-container{
+    margin-bottom: 10px;
+}
+
+.select-style{
+    margin-top: 5px;
+    width: 100%;
+    border: 0;
+    padding: 5px
+}
+
+.input-container{
+    display: flex;
+    justify-content: center;
+}
+
+.input-style{
+    border: 2;
+    padding: 5px;
+    margin: 5px 0px;
+    width: 100%;
+    align-self: center;
+}
+
+.search-button{
+    margin-top: 5px;
+    width: 100%;
+    
+    padding: 5px
+}

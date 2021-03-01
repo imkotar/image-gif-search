@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from 'react-flexbox-grid';
-import { SearchBar } from './components/SearchBar'
-import { Pagination } from './components/Pagination'
-import { ResultsDisplay } from './components/ResultsDisplay'
+import { SearchBar } from './components/search/SearchBar'
+import { Pagination } from './components/pagination/Pagination'
+import { ResultsDisplay } from './components/results/ResultsDisplay'
 import { SearchData, ImageProps } from './interfaces/interfaces'
+import { Loader } from './components/loader/Loader'
 import axios from 'axios'
 
 
@@ -52,6 +53,7 @@ function App() {
       .finally(() => setLoading(false))
   }
 
+
   return (
     <Grid>
       <h1>
@@ -59,7 +61,7 @@ function App() {
       </h1>
       <SearchBar searchData={searchData} onSearch={updateSearchData}/>
       <Pagination totalPagesNumber={totalPagesNumber} searchData={searchData} onPaginationChange={updatePaginationData}/>
-      {loading ? <div>loading</div> : <ResultsDisplay results={results} />}
+      {loading ? <Loader/> : <ResultsDisplay results={results} />}
     </Grid>
   );
 }
